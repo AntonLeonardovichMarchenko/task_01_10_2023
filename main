@@ -1,0 +1,27 @@
+import theGame
+import new_dice_game as the_game
+
+def goGame():
+    # игра по старой схеме theGame =======================================
+    # diceGame = theGame.DicePlay(10)
+    # diceGame.set_dices_values()
+
+    # игра по новой схеме new_dice_game as the_game=======================
+    diceGame = the_game.Dice_new(10, 2)
+    diceGame.set_dices_values()
+
+    print(f'{diceGame._dice_num_1}...{diceGame._dice_num_2}')
+
+    for i in range(11):
+        try:
+            print(diceGame.throw_dices())
+        except Exception as ex:
+            print(ex)
+            break
+
+
+def main():
+    goGame()
+
+if __name__ == '__main__':
+    main()
