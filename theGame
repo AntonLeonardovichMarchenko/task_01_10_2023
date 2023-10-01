@@ -1,0 +1,37 @@
+import random
+
+# это исключение уведомляет о превышении количества
+class DicePlayException(Exception):
+    def __init__(self, numAttemps, message):
+        self.numAttemps = numAttemps
+        self.massage = message
+
+class DicePlay:  # игра костьми
+
+
+    def __init__(self, N):
+        # всего бросков в игре
+        self.throw_N = N
+        # сколько бросков уже призведено
+        self.current_throw = 0
+
+    def set_dices_values(self):
+    # игра ведётся двумя костями, так
+    # что возможно выпадение кости в диапазоне (1 ... 6)
+        self._dice_num_1 = random.randint(1, 6)
+        self._dice_num_2 = random.randint(1, 6)
+
+    def throw_dices(self):
+        dice_1 = random.randint(1, 6)
+        dice_2 = random.randint(1, 6)
+
+        # поправили количество произведённых бросков
+        self.current_throw += 1
+
+        if self.throw_N > self.current_throw:
+            if {dice_1, dice_2} == {self._dice_num_1, self._dice_num_2}:
+                return True
+            else:
+                return False
+        else:
+            raise DicePlayException(self.current_throw, 'number of attempts exceeded')
